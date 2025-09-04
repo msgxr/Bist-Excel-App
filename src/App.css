@@ -1,0 +1,36 @@
+
+body {
+  background-color: #f4f6f8;
+  font-family: Arial, sans-serif;
+}
+
+.excel-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: rgb(255, 255, 255);
+}
+
+.excel-table th {
+  background-color: #2f5597;
+  color: white;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #c92929;
+}
+
+.excel-table td {
+  padding: 10px;
+  border: 1px solid #d0d0d0;
+  font-size: 13px;
+  text-align: center;
+}
+
+.excel-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.excel-table tr:hover {
+  background-color: #e6f0ff;
+}
