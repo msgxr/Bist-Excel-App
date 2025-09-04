@@ -32,13 +32,13 @@ Formüller, grafikler ve gelişmiş analiz özellikleriyle Borsa İstanbul veril
 📝 jsPDF + AutoTable (PDF export)
 
 # Repo'yu klonla
-git clone https://github.com/msgxr/Bist-Excel-App.git
+ git clone https://github.com/msgxr/Bist-Excel-App.git
 
 # Proje klasörüne gir
-cd Bist-Excel-App
+ cd Bist-Excel-App
 
 # Gerekli paketleri yükle
-npm install
+ npm install
 
 # Uygulamayı çalıştır
 npm run dev
