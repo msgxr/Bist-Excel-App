@@ -1,21 +1,24 @@
-
 name: Deploy Vite App to GitHub Pages
 
 on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write   # gh-pages branch'ine yazma izni
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20   # ✅ Node.js 20 sürümünü kullan
+          node-version: 20   # ✅ Node.js 20 kullan
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
