@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+
+<html lang="tr" translate="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+<!-- SEO Geliştirildi -->
+<meta name="description" content="Modern ve güçlü Excel benzeri veri görselleştirme ve elektronik tablo uygulaması. Formüller, grafikler ve gelişmiş analiz özellikleri." />
+<meta name="keywords" content="Excel, Elektronik Tablo, Web App, React, Vite, Spreadsheet, BIST, Veri Görselleştirme, Formül, Grafik, Analiz, Dashboard" />
+<meta name="author" content="Muhammed Sina GÜN" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#2563eb" />
+<meta name="msapplication-TileColor" content="#2563eb" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://seninsiten.com" />
+
+<!-- Open Graph Geliştirildi -->
+<meta property="og:title" content="ExcelPro - Gelişmiş Web Tablosu Uygulaması" />
+<meta property="og:description" content="Profesyonel Excel deneyimi tarayıcınızda. Güçlü formüller, dinamik grafikler ve gelişmiş veri analizi." />
+<meta property="og:image" content="/assets/preview-og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://seninsiten.com" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:site_name" content="ExcelPro" />
+
+<!-- Twitter Card Geliştirildi -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@seninhesabin" />
+<meta name="twitter:creator" content="@muhammed" />
+<meta name="twitter:title" content="ExcelPro - Gelişmiş Web Tablosu Uygulaması" />
+<meta name="twitter:description" content="Profesyonel Excel deneyimi tarayıcınızda. Güçlü formüller, dinamik grafikler ve gelişmiş veri analizi." />
+<meta name="twitter:image" content="/assets/preview-twitter.png" />
+
+<!-- PWA & Icons Geliştirildi -->
+<link rel="manifest" href="/manifest.json" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+<link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+<link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#2563eb" />
+<link rel="shortcut icon" href="/assets/icons/favicon.ico" />
+
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="ExcelPro" />
+
+<!-- Android Chrome -->
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="ExcelPro" />
+
+<!-- Preload & Fonts Geliştirildi -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" as="style" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<!-- Resource Hints -->
+<link rel="dns-prefetch" href="//api.seninsiten.com" />
+<link rel="preconnect" href="https://api.seninsiten.com" />
+<style>
+  :root {
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --line-height: 1.6;
+  
+    /* Light Theme Colors */
+    --color-bg: #ffffff;
+    --color-text: #0a11ef;
+    --color-overlay: rgba(229, 235, 235, 0.95);
+    --color-spinner: #050a15;
+  
+    /* Dark Theme Colors */
+    --color-bg-dark: #0f172a;
+    --color-text-dark: #f9fafb;
+    --color-spinner-dark: #f9fafb;
+  
+    /* High Contrast Colors */
+    --color-bg-hc: #000000;
+    --color-text-hc: #ffffff;
+  
+    /* Logo Opacity */
+    --logo-opacity-light: 0.05;
+    --logo-opacity-dark: 0.03;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Fullscreen Logo Background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url('/assets/bist-logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: var(--logo-opacity-light);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Loading Overlay */
+  .loading-container {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+  }
+  
+  .loading-spinner {
+    width: 56px;
+    height: 56px;
+    border: 4px solid rgba(0, 0, 0, 0.08);
+    border-top: 4px solid var(--color-spinner);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: var(--color-bg-dark);
+      color: var(--color-text-dark);
+    }
+    body::before {
+      opacity: var(--logo-opacity-dark);
+    }
+    .loading-spinner {
+      border-top-color: var(--color-spinner-dark);
+    }
+  }
+  
+  /* High Contrast Mode */
+  @media (prefers-contrast: high) {
+    body {
+      background-color: var(--color-bg-hc);
+      color: var(--color-text-hc);
+    }
+    body::before {
+      display: none;
+    }
+  }
+  
+  /* Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .loading-spinner {
+      animation: none;
+    }
+    body {
+      transition: none;
+    }
+  }
+  </style>
+  
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ExcelPro - Gelişmiş Web Tablosu",
+  "description": "Profesyonel Excel deneyimi tarayıcınızda. Güçlü formüller, dinamik grafikler ve gelişmiş veri analizi.",
+  "url": "https://seninsiten.com",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Web Browser",
+  "author": {
+    "@type": "Person",
+    "name": "Muhammed"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "TRY"
+  },
+  "featureList": [
+    "Excel benzeri arayüz",
+    "Güçlü formül desteği",
+    "Veri görselleştirme",
+    "Grafik oluşturma",
+    "İçe/Dışa aktarma",
+    "Gerçek zamanlı işbirliği"
+  ]
+}
+  </script>
+  <script type="module" crossorigin src="/bist-excel-app/assets/index-B9fL8wuP.js"></script>
+  <link rel="stylesheet" crossorigin href="/bist-excel-app/assets/index-Dtn62Xmo.css">
+</head>
+<body>
+  <!-- Yükleme Ekranı -->
+  <div class="loading-container" id="loading-screen" aria-live="polite">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <h2>ExcelPro Yükleniyor...</h2>
+      <p>Güçlü elektronik tablo deneyimi</p>
+    </div>
+  </div>
+
+  <!-- JavaScript Kapalı Uyarısı -->
+  <noscript>
+    <div class="noscript-warning">
+      <h1>⚠️ JavaScript Gerekli</h1>
+      <p><strong>ExcelPro uygulaması JavaScript olmadan çalışmaz.</strong></p>
+      <p>Lütfen tarayıcınızda JavaScript'i etkinleştirin ve sayfayı yenileyin.</p>
+      <div class="help-box">
+        <h3>JavaScript Nasıl Etkinleştirilir?</h3>
+        <ul>
+          <li><strong>Chrome:</strong> Ayarlar → Gizlilik ve güvenlik → Site ayarları → JavaScript</li>
+          <li><strong>Firefox:</strong> about:config → javascript.enabled → true</li>
+          <li><strong>Safari:</strong> Tercihler → Güvenlik → JavaScript'i etkinleştir</li>
+        </ul>
+      </div>
+    </div>
+  </noscript>
+
+  <!-- Ana Uygulama -->
+  <main id="root" role="main" aria-label="ExcelPro - Gelişmiş Excel benzeri veri görselleştirme ve elektronik tablo uygulaması">
+    <div id="slow-loading-fallback" class="slow-fallback" hidden>
+      <h2>Uygulama yükleniyor...</h2>
+      <p>Bu birkaç saniye sürebilir. Lütfen bekleyin.</p>
+    </div>
+  </main>
+
+  <!-- Scriptler -->
+  <script>
+    // Yükleme ekranını gizle
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loading-screen');
+      if (loadingScreen) {
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => loadingScreen.remove(), 500);
+      }
+    });
+
+    // 5 saniye sonra fallback göster
+    setTimeout(() => {
+      const fallback = document.getElementById('slow-loading-fallback');
+      const loadingScreen = document.getElementById('loading-screen');
+      if (fallback && loadingScreen) {
+        if (loadingScreen.style.display !== 'none') {
+          fallback.hidden = false;
+          fallback.classList.add('fade-in');
+        }
+      }
+    }, 5000);
+
+    // Service Worker kaydı ve güncelleme bildirimi
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').then(reg => {
+        reg.onupdatefound = () => {
+          const newWorker = reg.installing;
+          newWorker.onstatechange = () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              alert('Yeni bir sürüm mevcut! Sayfayı yenileyin.');
+            }
+          };
+        };
+      }).catch(err => console.error('SW kayıt hatası:', err));
+    }
+
+    // PWA yükleme isteği
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+  </script>
+
+  <!-- Ana Modül -->
+
+  <!-- Analytics -->
+  <script>
+    if (typeof gtag !== 'undefined') {
+      gtag('config', 'GA_MEASUREMENT_ID', {
+        page_title: 'ExcelPro Web App',
+        page_location: window.location.href
+      });
+    }
+  </script>
+</body>
+
+
+
+  </body>
+</html>
